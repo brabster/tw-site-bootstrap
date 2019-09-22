@@ -27,15 +27,10 @@ const Layout = ({ children, pageInfo }) => (
     render={data => (
       <>
         <Container fluid className="px-0 main">
-          <Row noGutters className="justify-content-center">
-            <Col>
-              <Header siteTitle={data.site.siteMetadata.title} />
-            </Col>
-          </Row>
           <Navbar pageInfo={pageInfo} />
-          <Row noGutters>
+          <Row noGutters className="mt-5">
             <Col>
-              <Container className="mt-5">
+              <Container>
                 <main>{children}</main>
               </Container>
             </Col>
@@ -46,9 +41,7 @@ const Layout = ({ children, pageInfo }) => (
             <Col className="footer-col">
               <footer>
                 <span>
-                  © {new Date().getFullYear()}, Built with
-                  {` `}
-                  <a href="https://www.gatsbyjs.org">Gatsby</a>
+                  <small>© {new Date().getFullYear()} Tempered Works Ltd. All rights reserved.</small>
                 </span>
               </footer>
             </Col>

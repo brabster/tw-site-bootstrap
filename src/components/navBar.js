@@ -1,28 +1,38 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import { Navbar, Nav } from "react-bootstrap"
+import { Navbar, Nav, Container, Row, Col } from "react-bootstrap"
 
 const CustomNavbar = ({ pageInfo }) => {
-  console.log(pageInfo)
   return (
     <>
-      <Navbar variant="dark" expand="lg" id="site-navbar">
-        {/* <Container> */}
+      <Navbar variant="dark" expand="md" id="site-navbar">
         <Link to="/" className="link-no-style">
-          <Navbar.Brand as="span">???</Navbar.Brand>
+          <Navbar.Brand>
+            <Container>
+              <Row>
+                <Col>Tempered Works</Col>
+              </Row>
+              <Row>
+                <Col><small>Software and Data Engineering</small></Col>
+              </Row>
+            </Container>
+          </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto" activeKey={pageInfo && pageInfo.pageName}>
-            <Link to="/page-2" className="link-no-style">
-              <Nav.Link as="span" eventKey="page-2">
-                Page 2
-              </Nav.Link>
-            </Link>
+        <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+          <Nav activeKey={pageInfo && pageInfo.pageName}>
+            {[
+              ["Home", "/"],
+              ["Services", "/services"],
+              ["Publications", "/publications"]
+            ].map(([page, link]) => 
+              <Link to={link} className="link-no-style">
+                <Nav.Link className="text-right" as="span" eventKey={page}>{page}</Nav.Link>
+              </Link>
+            )}
           </Nav>
         </Navbar.Collapse>
-        {/* </Container> */}
       </Navbar>
     </>
   )
