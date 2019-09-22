@@ -16,6 +16,8 @@ const PostList = ({  }) => (
         ) {
           edges {
             node {
+              excerpt
+              timeToRead
               frontmatter {
                 path
                 title
@@ -33,14 +35,15 @@ const PostList = ({  }) => (
     render={data => (
       <ListGroup>
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <ListGroup.Item>
+          <ListGroup.Item className="border-0">
             <PostTeaser
               link={node.frontmatter.path}
               title={node.frontmatter.title}
               publishDate={node.frontmatter.date}
               category={node.frontmatter.category}
               author="Paul"
-              teaserText={node.frontmatter.description}/>
+              excerpt={node.excerpt}
+              timeToRead={node.timeToRead}/>
           </ListGroup.Item>
         ))}
       </ListGroup>)}

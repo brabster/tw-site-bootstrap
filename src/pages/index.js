@@ -8,9 +8,9 @@ import PostList from "../components/postList"
 const IndexPage = () => (
   <Layout pageInfo={{ pageName: "index" }}>
     <SEO title="Home" keywords={[`gatsby`, `react`, `bootstrap`]} />
-    <Container className="text-center">
-      <Row className="justify-content-center my-3">
-        <Col md="6">
+    <Container>
+      <Row className="justify-content-center">
+        <Col>
           <PostList />
         </Col>
       </Row>
