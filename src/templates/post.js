@@ -8,14 +8,22 @@ export default function Template({
   const { frontmatter, html } = markdownRemark
   return (
 
-    <div className="container">
+    <div className="container post-container">
       <div className="p-2 row">
-        <div className="col-sm-2">
-          author bit here
-        </div>
-        <div className="col-sm-10">
+        <div className="col text-center">
           <h1>{frontmatter.title}</h1>
-          <h3 className="text-muted">{frontmatter.date}</h3>
+        </div>
+      </div>
+      <div className="p-2 row">
+        <div className="col-sm-3">
+          <div className="card author-card">
+            <div className="card-title">Paul Brabban</div>
+            <div className="card-subtitle">Tech Consultant</div>
+            email linkedin twitter
+          </div>
+          <p className="text-muted">{frontmatter.date}</p>
+        </div>
+        <div className="col-sm-9">
           <div
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: html }}
