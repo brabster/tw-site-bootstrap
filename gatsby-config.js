@@ -43,12 +43,6 @@ module.exports = {
             resolve: `gatsby-remark-prismjs`,
           },
           {
-            resolve: `gatsby-remark-copy-linked-files`,
-            options: {
-              ignoreFileExtensions: [`png`],
-            },
-          },
-          {
             resolve: `gatsby-remark-images`,
             options: {
               // It's important to specify the maxWidth (in pixels) of
@@ -57,6 +51,7 @@ module.exports = {
               maxWidth: 960,
             },
           },
+          `gatsby-remark-copy-linked-files`
         ],
       },
     },
