@@ -82,7 +82,7 @@ The next thing we can check easily is whether Spring Security is causing the pro
 
 The quick and easy way to check whether something that Spring Security is autoconfiguring in is causing the problem is to just omit the dependency. Let's delete `spring-security-web` and `spring-security-config` from our `pom.xml`. We can see there's less happening on startup, but will it handle the load better? Let's run the test.
 
-![Asciicast with no spring security on the classpath](no-spring-sec.gif)
+<img style="width: 100%" src="no-spring-sec.gif" alt="Asciicast with no spring security on the classpath">
 
 We have a winner! You can see that the performance is improved. No active requests throughout the test - the app is keeping up easily. The charts tell the same story. Let's compare side by side to get a feel for the difference.
 

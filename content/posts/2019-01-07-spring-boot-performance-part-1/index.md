@@ -101,7 +101,7 @@ spring.security.user.password=24gh39ugh0
 
 Start the app with `mvn spring-boot:run` and you should see something like this:
 
-![Asciinema recording of the app starting](start-app.gif)
+<img style="width: 100%" src="start-app.gif" alt="Asciinema recording of the app starting">
 
 ## Performance Testing with Gatling
 
@@ -161,7 +161,7 @@ We're starting with 20 users per second making a request to the `/` resource, ho
 
 Make sure the app is running and then run the test with `mvn gatling:test`.
 
-![Asciinema recording of the performance test running](perf-test-1.gif)
+<img style="width: 100%" src="perf-test-1.gif" alt="Asciinema recording of the performance test running">
 
 When the tests run you see a progress bar being refreshed every few seconds. The `###` part represents the proportion of requests that have been made and completed. The section with dashes `---` is requests made but not yet completed. The numbers are just below the progress bar, `active` telling us how many requests have been made but not yet completed. There's a lot of those, over a thousand towards the end of the test, and this computer isn't exactly underpowered. There's our performance problem! Towards the end of the test, requests are taking over 26 seconds to complete.
 
