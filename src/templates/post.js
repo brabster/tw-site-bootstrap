@@ -13,7 +13,7 @@ export default function Template({
         <div className="col-sm-2">
           author bit here
         </div>
-        <div className="col-sm-8">
+        <div className="col-sm-10">
           <h1>{frontmatter.title}</h1>
           <h3 className="text-muted">{frontmatter.date}</h3>
           <div
