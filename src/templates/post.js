@@ -10,9 +10,12 @@ export default function Template({
 
     <div className="container">
       <div className="p-2 row">
-        <div className="col-md">
+        <div className="col-sm-2">
+          author bit here
+        </div>
+        <div className="col-sm-8">
           <h1>{frontmatter.title}</h1>
-          <h2>{frontmatter.date}</h2>
+          <h3 className="text-muted">{frontmatter.date}</h3>
           <div
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: html }}

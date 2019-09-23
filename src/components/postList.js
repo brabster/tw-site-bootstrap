@@ -33,9 +33,9 @@ const PostList = ({  }) => (
       }
     `}
     render={data => (
-      <ListGroup>
+      <ListGroup className="p-0">
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <ListGroup.Item className="border-0">
+          <ListGroup.Item className="pt-0 pb-4 px-0 border-0">
             <PostTeaser
               link={node.frontmatter.path}
               title={node.frontmatter.title}

@@ -5,19 +5,21 @@ import React from "react"
 import { Card, Button } from "react-bootstrap"
 
 const PostTeaser = ({ title, publishDate, author, excerpt, timeToRead, category, link }) => (
-    <Card>
-      <Card.Header className="px-2 py-0 text-muted">
-        {publishDate}
-        <Link to={`/categories/${category}`}>
-          <Button className="text-uppercase" variant="link">{category}</Button>
-        </Link>
-        {timeToRead} minute read
-      </Card.Header>
-      <Card.Title className="px-2">{title}</Card.Title>
-      <Card.Text className="px-2">
-        {excerpt} <Link to={link}> read more</Link>
+  <Card>
+    <Card.Header className="px-2 py-0 text-muted">
+      {publishDate}
+      <Link to={`/categories/${category}`}>
+        <Button className="text-uppercase" variant="link">{category}</Button>
+      </Link>
+    </Card.Header>
+    <Link to={link} className="custom-card">
+      <Card.Title className="px-2 py-0">{title}</Card.Title>
+      <Card.Text className="px-2 py-0">
+        {excerpt}
       </Card.Text>
-    </Card>
+    </Link>
+    <Link to={link}><Card.Text className="px-2 py-0">read more</Card.Text></Link>
+  </Card>
 )
 
 PostTeaser.propTypes = {
