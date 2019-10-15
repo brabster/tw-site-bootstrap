@@ -51,24 +51,24 @@ Another unlikely candidate is the JSON encoding we're doing on our responses. Ou
 
 
 ```java
-    class Greeting {
-        public String getGreeting() {
-            return "Greetings from Spring Boot!";
-        }
+class Greeting {
+    public String getGreeting() {
+        return "Greetings from Spring Boot!";
     }
+}
 
-    @RequestMapping("/")
-    public Greeting index() {
-        return new Greeting();
-    }
+@RequestMapping("/")
+public Greeting index() {
+    return new Greeting();
+}
 ```
 to:
 
 ```java
-    @RequestMapping("/")
-    public String index() {
-        return "Greetings from Spring Boot!";
-    }
+@RequestMapping("/")
+public String index() {
+    return "Greetings from Spring Boot!";
+}
 ```
 
 If you make that change and run the Gatling test, you see...
@@ -150,7 +150,8 @@ We'll override the password encoder to prove that it is causing the performance 
 
 ```java
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends 
+WebSecurityConfigurerAdapter {
 
     // make the credentials in application.properties available
     @Value("${spring.security.user.name}")

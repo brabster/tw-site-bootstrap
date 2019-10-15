@@ -11,10 +11,7 @@ const CustomNavbar = ({ pageInfo }) => {
           <Navbar.Brand>
             <Container>
               <Row>
-                <Col>Tempered Works</Col>
-              </Row>
-              <Row>
-                <Col><small>Software and Data Engineering</small></Col>
+                <Col>tempered.works</Col>
               </Row>
             </Container>
           </Navbar.Brand>
@@ -23,9 +20,9 @@ const CustomNavbar = ({ pageInfo }) => {
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Nav activeKey={pageInfo && pageInfo.pageName}>
             {[
-              ["Home", "/"],
-              ["Services", "/services"],
-              ["Publications", "/publications"]
+              ["Blog", "/"],
+              ["Company", "/company"],
+              ["Contact", "/contact"]
             ].map(([page, link]) => 
               <Link to={link} className="link-no-style">
                 <Nav.Link className="text-right" as="span" eventKey={page}>{page}</Nav.Link>

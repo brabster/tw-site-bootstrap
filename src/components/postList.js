@@ -1,12 +1,11 @@
-import { Link, StaticQuery } from "gatsby"
-import PropTypes from "prop-types"
+import { StaticQuery, graphql } from "gatsby"
 import React from "react"
 
 import { ListGroup } from "react-bootstrap"
 
 import PostTeaser from "./postTeaser"
 
-const PostList = ({  }) => (
+const PostList = () => (
   <StaticQuery
     query={graphql`
       query Posts {
@@ -37,23 +36,12 @@ const PostList = ({  }) => (
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <ListGroup.Item className="pt-0 pb-4 px-0 border-0">
             <PostTeaser
-              link={node.frontmatter.path}
-              title={node.frontmatter.title}
-              publishDate={node.frontmatter.date}
-              category={node.frontmatter.category}
-              author="Paul"
-              excerpt={node.excerpt}
-              timeToRead={node.timeToRead}/>
+              frontmatter={node.frontmatter}
+              excerpt={node.excerpt} />
           </ListGroup.Item>
         ))}
       </ListGroup>)}
   />
 )
-
-PostList.propTypes = {
-}
-
-PostList.defaultProps = {
-}
 
 export default PostList
