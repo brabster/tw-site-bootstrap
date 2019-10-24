@@ -25,6 +25,9 @@ const PostList = () => (
                 tags
                 date(formatString: "MMMM DD, YYYY")
                 path
+                author {
+                  name
+                }
               }
             }
           }

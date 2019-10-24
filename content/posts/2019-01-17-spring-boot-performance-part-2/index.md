@@ -14,6 +14,7 @@ tags:
  - "java"
  - "scala"
 description: "Tracking down a performance problem - (Threads | Sessions | Passwords)?"
+author: brabster
 ---
 
 In [Part 1](/posts/spring-boot-performance-part-1), we built a simple Spring Boot webapp and demonstrated a surprising performance problem.

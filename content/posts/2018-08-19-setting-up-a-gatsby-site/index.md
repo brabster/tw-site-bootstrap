@@ -12,6 +12,7 @@ tags:
  - "web-development"
  - "static-sites"
 description: "GatsbyJS is a GraphQL and React-based static site generator that aims to produce really fast sites. Here's what happened when I used it to set up the tempered.works website on Netlify."
+author: brabster
 ---
 
 ![No better time to grab an old Geocities-style under construction gif...](under-construction.gif)

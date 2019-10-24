@@ -1,0 +1,72 @@
+id: brabster
+name: Paul Brabban
+label: Tech Consultant
+picture: 
+website: https://tempered.works/people/brab
+summary: >
+  Alongside software development and data engineering,
+  I’ve worked in analytics, marketing, machine learning and cloud computing.
+  I love solving problems and I’m flexible enough to help you.
+location:
+  city: Sheffield
+  region: South Yorkshire
+  countryCode: UK
+phone:
+  (+44) 773 4652295
+languages:
+  language: English
+  fluency: Native speaker
+available: 2020-07
+profiles:
+  - network: Github
+    username: brabster
+    url: https://github.com/brabster
+  - network: LinkedIn
+    username: paulbrabban
+    url: https://uk.linkedin.com/in/paulbrabban
+  - network: Twitter
+    username: brabster
+    url: https://twitter.com/brabster
+engagements: 
+  - client: UK Retailer
+    agency: Equal Experts
+    role: Machine Learning Engineer, Online Search
+    start: 2019-07
+    end: 2020-07
+    highlights:
+      - fooble bar baz
+    keywords:
+      - Search Relevance
+      - Elasticsearch
+      - Kubernetes
+      - Google Kubernetes Engine
+      - Terraform
+      - Python
+      - Kotlin
+      - React
+      - Argo
+    
+  - client: Civil Service Client
+    agency: Equal Experts
+    role: Tech Lead, Development
+    start: 2018-11
+    end: 2019-06
+    keywords:
+      - Entity Resolution
+      - Kubernetes
+      - Java 8+
+      - Apache Spark
+      - Neo4J
+      - AWS
+
+  - client: Dunnhumby
+    agency: People Source Consulting
+    role: Data Engineer, Streaming and Machine Learning
+    start: 2018-11
+    end: 2019-06
+    keywords:
+      - Apache Beam
+      - Terraform
+      - Google Cloud Dataflow
+      - Python
+      - Scala

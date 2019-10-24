@@ -14,6 +14,7 @@ tags:
  - "java"
  - "scala"
 description: "Exploring a surprising performance problem in a simple Spring Boot app with the Gatling load testing framework."
+author: brabster
 ---
 
 Just after the rest of the team had left for their Christmas holidays, my colleague and I discovered a weird performance problem with a Spring Boot application we'd just started writing.

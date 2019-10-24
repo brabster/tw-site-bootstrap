@@ -12,6 +12,7 @@ tags:
  - "data-engineering"
  - "development"
 description: "For very little effort, Scala's Type Aliases can help you keep track of what means what in your Scio Beam pipelines."
+author: brabster
 ---
 
 Data pipelines in [Apache Beam](https://beam.apache.org/) have a distinctly functional flavour, whichever language you use. That's because they can be distributed over a cluster of machines, so careful management of state and side-effects is important.

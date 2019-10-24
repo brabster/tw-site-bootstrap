@@ -11,7 +11,7 @@ const FrontMatter = ({ frontmatter }) => (
     </Row>
     <Row>
       <Col>
-        <p>Paul Brabban - {frontmatter.date}</p>
+        <p>by {frontmatter.author.name} - {frontmatter.date}</p>
       </Col>
     </Row>
   </Container>

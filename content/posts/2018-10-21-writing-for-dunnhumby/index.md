@@ -12,6 +12,7 @@ tags:
  - "data-engineering"
  - "demos"
 description: "I've authored a couple of articles on the Dunnhumby engineering blog."
+author: brabster
 ---
 
 [Dunnhumby](https://www.dunnhumby.com) is a retail data science company that I've been working with lately.

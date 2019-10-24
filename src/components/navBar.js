@@ -20,9 +20,8 @@ const CustomNavbar = ({ pageInfo }) => {
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Nav activeKey={pageInfo && pageInfo.pageName}>
             {[
-              ["Blog", "/"],
-              ["Company", "/company"],
-              ["Contact", "/contact"]
+              ["About", "/"],
+              ["Blog", "/blog"]
             ].map(([page, link]) => 
               <Link to={link} className="link-no-style">
                 <Nav.Link className="text-right" as="span" eventKey={page}>{page}</Nav.Link>
