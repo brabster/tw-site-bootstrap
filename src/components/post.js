@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap"
 import FrontMatter from "./frontmatter"
 
 const Post = ({ frontmatter, html }) => (
-  <Container>
+  <Container className="shadow rounded">
     <Row>
       <FrontMatter frontmatter={frontmatter} />
     </Row>

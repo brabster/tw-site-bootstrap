@@ -1,30 +1,42 @@
 import React from "react"
 
-import { Card, Container, Row, Col, Button } from "react-bootstrap"
+import { Card, Container, Row, Col, Badge } from "react-bootstrap"
 
-const formatAvailability = dateStr => new Date(dateStr).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
+const availableFrom = ({ engagements: [{ end = 0 } = {}, ] }) => new Date(end);
+const renderAvailableFrom = (person) => {
+  const availableDate = availableFrom(person);
+  return availableDate <= Date.now()
+    ? <Badge pill variant="success">Available now</Badge>
+    : <Badge pill variant="primary">Available {availableDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })}</Badge>
+}
+
+const clientInfo = ({ name, description, link }) => {
+  const label = name || description;
+  return link
+    ? <a href={link}>{label}</a>
+    : label
+}
 
 export default ({ person }) => (
-  <Container>
-    <Row>
+  <Container className="border shadow p-3">
+    <Row className="pb-3">
       <Col>
-        <Card>
-          <Card.Title>{person.name}</Card.Title>
-          <Card.Text>
-            {person.summary}
-            <p>Based in {person.location.city}</p>
-            <p>Expected Availability: {formatAvailability(person.available)}</p>
-          </Card.Text>
-        </Card>
+        <Row className="pb-2">
+          <Col><h2>{person.name}</h2></Col>
+          <Col className="text-right">{renderAvailableFrom(person)}</Col>
+        </Row>
+        <Row>
+          <Col className="lead">{person.summary}</Col>
+        </Row>
+        <Row>
+          <Col>Based in {person.location.city}, {person.location.countryCode}</Col>
+        </Row>
       </Col>
-    </Row>
-    <Row>
-      <Col>Recent Engagements</Col>
     </Row>
     <Row>
       <Col>{person.engagements.map(({ client, agency, role, start, end, keywords }) => (
         <Card>
-          <Card.Header>{role} with {client}</Card.Header>
+          <Card.Header>{role} | {clientInfo(client)}</Card.Header>
           <Card.Body>
             <Card.Text>
               {start} - {end} via {agency}
@@ -32,7 +44,7 @@ export default ({ person }) => (
           </Card.Body>
           <Card.Footer>
             {keywords.map(keyword =>
-              <Button variant="outline-primary" size="sm">{keyword}</Button>)}
+              <Badge pill variant="primary">{keyword}</Badge>)}
           </Card.Footer>
         </Card>
       ))}</Col>

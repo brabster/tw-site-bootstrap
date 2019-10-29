@@ -2,7 +2,7 @@ id: brabster
 name: Paul Brabban
 label: Tech Consultant
 picture: 
-website: https://tempered.works/people/brab
+website: https://tempered.works/people/brabster
 summary: >
   Alongside software development and data engineering,
   I’ve worked in analytics, marketing, machine learning and cloud computing.
@@ -16,7 +16,6 @@ phone:
 languages:
   language: English
   fluency: Native speaker
-available: 2020-07
 profiles:
   - network: Github
     username: brabster
@@ -28,7 +27,8 @@ profiles:
     username: brabster
     url: https://twitter.com/brabster
 engagements: 
-  - client: UK Retailer
+  - client:
+      description: a major UK retailer
     agency: Equal Experts
     role: Machine Learning Engineer, Online Search
     start: 2019-07
@@ -46,7 +46,8 @@ engagements:
       - React
       - Argo
     
-  - client: Civil Service Client
+  - client:
+      description: a civil service client
     agency: Equal Experts
     role: Tech Lead, Development
     start: 2018-11
@@ -59,7 +60,9 @@ engagements:
       - Neo4J
       - AWS
 
-  - client: Dunnhumby
+  - client:
+      name: Dunnhumby
+      link: https://dunnhumby.com
     agency: People Source Consulting
     role: Data Engineer, Streaming and Machine Learning
     start: 2018-11

@@ -25,7 +25,11 @@ const Company = () => {
               name
               summary
               engagements {
-                client
+                client {
+                  name
+                  description
+                  link
+                }
                 agency
                 role
                 start

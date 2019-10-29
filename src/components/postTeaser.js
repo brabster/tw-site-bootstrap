@@ -4,7 +4,7 @@ import React from "react"
 import { Card, Button } from "react-bootstrap"
 
 const PostTeaser = ({ frontmatter: { date, path, title, category, author }, excerpt }) => (
-  <Card>
+  <Card className="shadow">
     <Card.Header className="px-2 py-0 text-muted">
       {date}
       <Button className="text-uppercase" variant="link">{category}</Button>
@@ -16,7 +16,6 @@ const PostTeaser = ({ frontmatter: { date, path, title, category, author }, exce
       </Card.Text>
     </Link>
     <Link to={path}><Card.Text className="px-2 py-0">read more</Card.Text></Link>
-    <Card.Footer>{author.name}</Card.Footer>
   </Card>
 )
 
