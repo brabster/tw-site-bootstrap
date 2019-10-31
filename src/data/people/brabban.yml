@@ -28,13 +28,15 @@ profiles:
     url: https://twitter.com/brabster
 engagements: 
   - client:
-      description: a major UK retailer
+      description: UK Retailer
     agency: Equal Experts
-    role: Machine Learning Engineer, Online Search
+    role: Machine Learning Engineer
     start: 2019-07
     end: 2020-07
+    headline: Bootstrap relevance engineering for a new, public facing, high-traffic search solution.
     highlights:
-      - fooble bar baz
+      - Joined team at 3% customer traffic and delivered improvments to take over all traffic within three months
+      - Replaced manual data processing with a data-science friendly, lightweight, in-cloud workflow solution
     keywords:
       - Search Relevance
       - Elasticsearch
@@ -47,11 +49,17 @@ engagements:
       - Argo
     
   - client:
-      description: a civil service client
+      description: Civil Service Client
     agency: Equal Experts
-    role: Tech Lead, Development
+    role: Tech Lead
     start: 2018-11
     end: 2019-06
+    headline: Lead a team to deliver a proof-of-concept entity resolution and matching system
+    highlights:
+      - Delivered a basic demonstration system to secure funding for next delivery phases.
+      - Included REST/SOAP APIs (for legacy clients), web search UI, graph storage, data ingestion and batch processing.
+      - Achieved challenging performance goals with high sustained request volumes on modest hardware.
+      - Adopted contract-first development and pact testing.
     keywords:
       - Entity Resolution
       - Kubernetes
@@ -64,9 +72,15 @@ engagements:
       name: Dunnhumby
       link: https://dunnhumby.com
     agency: People Source Consulting
-    role: Data Engineer, Streaming and Machine Learning
+    role: Data Engineer
     start: 2018-11
     end: 2019-06
+    headline: Conducting research and proof-of-concept work into realtime product opportunities and serverless services.
+    highlights:
+      - Led a small team on a serverless proof of concept of an existing data ingest service.
+      - Built a proof of concept for dashboard based on real time transaction data.
+      - Mentored an intern to produce simple machine learning models.
+      - Wrote custom tooling to replay historical data for demos – see blog post
     keywords:
       - Apache Beam
       - Terraform

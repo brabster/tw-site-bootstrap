@@ -1,8 +1,8 @@
 import React from "react"
 
-import { Card, Container, Row, Col, Badge } from "react-bootstrap"
+import { Card, Container, Row, Col, Badge, ListGroup } from "react-bootstrap"
 
-const availableFrom = ({ engagements: [{ end = 0 } = {}, ] }) => new Date(end);
+const availableFrom = ({ engagements: [{ end = 0 } = {},] }) => new Date(end);
 const renderAvailableFrom = (person) => {
   const availableDate = availableFrom(person);
   return availableDate <= Date.now()
@@ -34,12 +34,18 @@ export default ({ person }) => (
       </Col>
     </Row>
     <Row>
-      <Col>{person.engagements.map(({ client, agency, role, start, end, keywords }) => (
-        <Card>
-          <Card.Header>{role} | {clientInfo(client)}</Card.Header>
-          <Card.Body>
+      <Col>{person.engagements.map(({ client, headline, highlights, agency, role, start, end, keywords }) => (
+        <Card className="mt-3">
+          <Card.Header>
+            {role} - {clientInfo(client)}
+            <div className="lead">{headline}</div>
+          </Card.Header>
+          <Card.Body className="py-0 px-2">
             <Card.Text>
-              {start} - {end} via {agency}
+              <ListGroup variant="flush">
+                {highlights && highlights.map(highlight =>
+                  <ListGroup.Item>{highlight}</ListGroup.Item>)}
+              </ListGroup>
             </Card.Text>
           </Card.Body>
           <Card.Footer>
