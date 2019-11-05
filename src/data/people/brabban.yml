@@ -11,11 +11,14 @@ location:
   city: Sheffield
   region: South Yorkshire
   countryCode: UK
+remote: Travel by public transport, remote capability and experience.
 phone:
   (+44) 773 4652295
 languages:
   language: English
   fluency: Native speaker
+qualifications:
+  - name: DBS Certificate
 profiles:
   - network: Github
     username: brabster
@@ -32,7 +35,7 @@ engagements:
     agency: Equal Experts
     role: Machine Learning Engineer
     start: 2019-07
-    end: 2020-07
+    end: 2020-06
     headline: Bootstrap relevance engineering for a new, public facing, high-traffic search solution.
     highlights:
       - Joined team at 3% customer traffic and delivered improvments to take over all traffic within three months
@@ -73,8 +76,8 @@ engagements:
       link: https://dunnhumby.com
     agency: People Source Consulting
     role: Data Engineer
-    start: 2018-11
-    end: 2019-06
+    start: 2018-06
+    end: 2018-11
     headline: Conducting research and proof-of-concept work into realtime product opportunities and serverless services.
     highlights:
       - Led a small team on a serverless proof of concept of an existing data ingest service.

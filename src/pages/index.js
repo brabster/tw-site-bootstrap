@@ -23,6 +23,7 @@ const Company = () => {
               }
               name
               summary
+              remote
               engagements {
                 client {
                   name
