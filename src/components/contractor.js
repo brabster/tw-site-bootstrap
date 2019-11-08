@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Card, Container, Row, Col, Badge, ListGroup } from "react-bootstrap"
+import { Card, Container, Row, Col, Badge, ListGroup, Accordion } from "react-bootstrap"
 
 const formatDate = (isoDateStr) => new Date(isoDateStr).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
 const nextAvailable = (isoDateStr) => {
@@ -38,20 +38,22 @@ const Engagement = ({ engagement }) => {
   const { client, headline, highlights, agency, role, start, end, keywords } = engagement;
 
   return <Card className="mt-3">
-    <Card.Header>
+    <Accordion.Toggle as={Card.Header} eventKey={start}>
       {role} - {clientInfo(client)}
-      <div className="lead">{headline}</div>
-      <div>{`${formatDate(start)} - ${formatDate(end)} (${monthsBetweenIncl(start, end)} months${isFutureDate(end) ? ", projected" : ""})`}</div>
-    </Card.Header>
-    <Card.Body className="py-0 px-0">
-      <Card.Text>
-        <ListGroup variant="flush">
-          {highlights && highlights.map(highlight =>
-            <ListGroup.Item>{highlight}</ListGroup.Item>)}
-        </ListGroup>
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
+      <div className="mt-2 lead">{headline}</div>
+      <div className="mt-2">{`${formatDate(start)} - ${formatDate(end)} (${monthsBetweenIncl(start, end)} months${isFutureDate(end) ? " - projected" : ""})`}</div>
+    </Accordion.Toggle>
+    <Accordion.Collapse eventKey={start}>
+      <Card.Body className="py-0 px-0">
+        <Card.Text>
+          <ListGroup variant="flush">
+            {highlights && highlights.map(highlight =>
+              <ListGroup.Item>{highlight}</ListGroup.Item>)}
+          </ListGroup>
+        </Card.Text>
+      </Card.Body>
+    </Accordion.Collapse>
+    <Card.Footer className="border-bottom-2">
       {keywords.map(keyword =>
         <Badge className="mr-1" pill variant="primary">{keyword}</Badge>)}
     </Card.Footer>
@@ -69,12 +71,16 @@ export default ({ person }) => (
           <Col className="lead">{person.summary}</Col>
         </Row>
         <Row>
-          <Col><LocationInfo location={person.location} remote={person.remote} /></Col>
+          <Col className="pt-2"><LocationInfo location={person.location} remote={person.remote} /></Col>
         </Row>
       </Col>
     </Row>
     <Row>
-      <Col>{person.engagements.map(engagement => <Engagement engagement={engagement} />)}</Col>
+      <Col>
+        <Accordion>
+          {person.engagements.map(engagement => <Engagement engagement={engagement} />)}
+        </Accordion>
+      </Col>
     </Row>
   </Container>
 )

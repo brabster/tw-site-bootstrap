@@ -1,4 +1,4 @@
-const path = require(`path`)
+const path = require('path');
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
@@ -13,9 +13,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       ) {
         edges {
           node {
-            frontmatter {
-              path
-            }
+            fileAbsolutePath
           }
         }
       }
@@ -29,8 +27,10 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    const slug = path.dirname(node.fileAbsolutePath).split(path.sep).pop();
+    console.log(slug);
     createPage({
-      path: node.frontmatter.path,
+      path: slug,
       component: blogPostTemplate,
       context: {}, // additional data can be passed via context
     })

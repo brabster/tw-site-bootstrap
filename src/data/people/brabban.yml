@@ -38,8 +38,9 @@ engagements:
     end: 2020-06
     headline: Bootstrap relevance engineering for a new, public facing, high-traffic search solution.
     highlights:
-      - Joined team at 3% customer traffic and delivered improvments to take over all traffic within three months
-      - Replaced manual data processing with a data-science friendly, lightweight, in-cloud workflow solution
+      - Joined team at 3% customer traffic and delivered improvments to take over all traffic within three months.
+      - Replaced manual data processing with a data-science friendly, lightweight, in-cloud workflow solution.
+      - Implemented and iterated A/B testing technology and methodology with data scientists.
     keywords:
       - Search Relevance
       - Elasticsearch
@@ -50,6 +51,7 @@ engagements:
       - Kotlin
       - React
       - Argo
+      - A/B Testing
     
   - client:
       description: Civil Service Client
@@ -57,7 +59,7 @@ engagements:
     role: Tech Lead
     start: 2018-11
     end: 2019-06
-    headline: Lead a team to deliver a proof-of-concept entity resolution and matching system
+    headline: Lead a team to deliver a proof-of-concept entity resolution and matching system.
     highlights:
       - Delivered a basic demonstration system to secure funding for next delivery phases.
       - Included REST/SOAP APIs (for legacy clients), web search UI, graph storage, data ingestion and batch processing.
@@ -78,12 +80,12 @@ engagements:
     role: Data Engineer
     start: 2018-06
     end: 2018-11
-    headline: Conducting research and proof-of-concept work into realtime product opportunities and serverless services.
+    headline: Conduct research and proof-of-concepts for realtime product opportunities and serverless services.
     highlights:
       - Led a small team on a serverless proof of concept of an existing data ingest service.
       - Built a proof of concept for dashboard based on real time transaction data.
       - Mentored an intern to produce simple machine learning models.
-      - Wrote custom tooling to replay historical data for demos – see blog post
+      - Wrote custom tooling to replay historical data for demos – see blog post.
     keywords:
       - Apache Beam
       - Terraform
