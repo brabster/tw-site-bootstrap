@@ -4,23 +4,21 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Post from "../components/post"
 
-const Template = ({ data }) => {
-  const { markdownRemark } = data // data.markdownRemark holds our post data
+export default ({ data }) => {
+  const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
   return (
     <Layout>
       <Post frontmatter={frontmatter} html={html} />
     </Layout>)
 }
-export default Template
 
-export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+export const query = graphql`
+  query($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
-        path
         title
         author {
           name

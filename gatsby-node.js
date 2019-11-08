@@ -1,41 +1,49 @@
 const path = require('path');
 
-exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
-  const blogPostTemplate = path.resolve(`src/templates/post.js`)
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
+  if (node.internal.type === `MarkdownRemark`) {
+    const slug = createFilePath({ node, getNode, basePath: `posts` })
+    createNodeField({
+      node,
+      name: `slug`,
+      value: `/posts${slug}`,
+    })
+  }
+}
 
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
   const result = await graphql(`
-    {
-      allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
+    query {
+      allMarkdownRemark {
         edges {
           node {
-            fileAbsolutePath
+            fields {
+              slug
+            }
           }
         }
       }
     }
   `)
-
-  // Handle errors
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    return
-  }
-
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    const slug = path.dirname(node.fileAbsolutePath).split(path.sep).pop();
-    console.log(slug);
     createPage({
-      path: slug,
-      component: blogPostTemplate,
-      context: {}, // additional data can be passed via context
+      path: node.fields.slug,
+      component: path.resolve(`./src/templates/post.js`),
+      context: {
+        // Data passed to context is available
+        // in page queries as GraphQL variables.
+        slug: node.fields.slug,
+      },
     })
   })
+
 }
+
+
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes } = actions

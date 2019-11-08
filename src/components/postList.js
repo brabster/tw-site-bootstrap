@@ -15,16 +15,17 @@ const PostList = () => (
         ) {
           edges {
             node {
+              fields {
+                slug
+              }
               excerpt
               timeToRead
               frontmatter {
-                path
                 title
                 description
                 category
                 tags
                 date(formatString: "MMMM DD, YYYY")
-                path
                 author {
                   name
                 }
@@ -39,6 +40,7 @@ const PostList = () => (
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <ListGroup.Item className="pt-0 pb-4 px-0 border-0">
             <PostTeaser
+              slug={node.fields.slug}
               frontmatter={node.frontmatter}
               excerpt={node.excerpt} />
           </ListGroup.Item>
