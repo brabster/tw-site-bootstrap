@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap"
 
 import FrontMatter from "./frontmatter"
 
-const Post = ({ frontmatter, html, fields }) => (
+export default ({ frontmatter, html, fields }) => (
   <Container className="shadow rounded">
     <Row>
       <FrontMatter frontmatter={frontmatter} fields={fields} />
@@ -19,5 +19,3 @@ const Post = ({ frontmatter, html, fields }) => (
     </Row>
   </Container>
 )
-
-export default Post

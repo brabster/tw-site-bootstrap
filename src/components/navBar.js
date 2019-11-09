@@ -21,7 +21,7 @@ const CustomNavbar = ({ pageInfo }) => {
           <Nav activeKey={pageInfo && pageInfo.pageName}>
             {[
               ["About", "/"],
-              ["Blog", "/blog"]
+              ["Blog", "/posts"]
             ].map(([page, link]) => 
               <Link to={link} className="link-no-style">
                 <Nav.Link className="text-right" as="span" eventKey={page}>{page}</Nav.Link>

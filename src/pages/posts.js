@@ -5,8 +5,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostList from "../components/postList"
 
-const Blog = () => (
-  <Layout pageInfo={{ pageName: "blog" }}>
+export default () => (
+  <Layout pageInfo={{ pageName: "posts" }}>
     <SEO title="Home" keywords={[`consulting`]} />
     <Container>
       <Row className="justify-content-center">
@@ -17,5 +17,3 @@ const Blog = () => (
     </Container>
   </Layout>
 )
-
-export default Blog
