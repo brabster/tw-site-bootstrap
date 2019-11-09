@@ -7,7 +7,7 @@ export default ({ frontmatter, fields: { date } }) => {
     <Container>
       <Row>
         <Col>
-          <h1>{frontmatter.title}</h1>
+          <h1 className="text-center">{frontmatter.title}</h1>
         </Col>
       </Row>
       <Row>

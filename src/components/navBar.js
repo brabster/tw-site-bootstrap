@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 
 import { Navbar, Nav, Container, Row, Col } from "react-bootstrap"
 
-const CustomNavbar = ({ pageInfo }) => {
+export default ({ pageInfo }) => {
   return (
     <>
       <Navbar variant="dark" expand="md" id="site-navbar">
@@ -23,7 +23,7 @@ const CustomNavbar = ({ pageInfo }) => {
               ["About", "/"],
               ["Blog", "/posts"]
             ].map(([page, link]) => 
-              <Link to={link} className="link-no-style">
+              <Link key={link} to={link} className="link-no-style">
                 <Nav.Link className="text-right" as="span" eventKey={page}>{page}</Nav.Link>
               </Link>
             )}
@@ -33,5 +33,3 @@ const CustomNavbar = ({ pageInfo }) => {
     </>
   )
 }
-
-export default CustomNavbar
