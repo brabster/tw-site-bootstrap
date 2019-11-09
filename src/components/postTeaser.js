@@ -4,8 +4,8 @@ import React from "react"
 import { Card, Button } from "react-bootstrap"
 
 const PostTeaser = ({
-  slug,
-  frontmatter: { date, path, title, category, author },
+  fields: { date, slug },
+  frontmatter: { title, category, author },
   excerpt
 }) => (
   <Card className="shadow">

@@ -2,6 +2,11 @@ const path = require('path');
 
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
+const dateFromSlug = slug => {
+  const [year, month, date] = slug.replace("/", "").split("-");
+  return new Date(year, month, date);
+}
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {
@@ -10,6 +15,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       node,
       name: `slug`,
       value: `/posts${slug}`,
+    }),
+    createNodeField({
+      node,
+      name: `date`,
+      value: dateFromSlug(slug),
     })
   }
 }

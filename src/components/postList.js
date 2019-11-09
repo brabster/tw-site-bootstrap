@@ -10,13 +10,14 @@ const PostList = () => (
     query={graphql`
       query Posts {
         allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date] }
+          sort: { order: DESC, fields: [fields___date] }
           limit: 10
         ) {
           edges {
             node {
               fields {
-                slug
+                slug,
+                date(formatString: "MMMM DD, YYYY")
               }
               excerpt
               timeToRead
@@ -25,7 +26,6 @@ const PostList = () => (
                 description
                 category
                 tags
-                date(formatString: "MMMM DD, YYYY")
                 author {
                   name
                 }
@@ -40,7 +40,7 @@ const PostList = () => (
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <ListGroup.Item className="pt-0 pb-4 px-0 border-0">
             <PostTeaser
-              slug={node.fields.slug}
+              fields={node.fields}
               frontmatter={node.frontmatter}
               excerpt={node.excerpt} />
           </ListGroup.Item>

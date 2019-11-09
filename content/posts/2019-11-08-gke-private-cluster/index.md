@@ -1,9 +1,6 @@
 ---
 title: First Impressions - GKE Private Cluster
-date: 2019-11-08T00:00:00Z
-layout: post
-draft: true
-path: /posts/gke-private-cluster
+date: 2019-11-08
 category: Google Cloud Platform
 tags:
  - gcp
@@ -22,11 +19,15 @@ over more traditional choices like [Airflow](https://airflow.apache.org/). More 
 
 The choice of Argo involves building out a dedicated Kubernetes cluster to run it. GKE is the simplest hosted option for this client, so that's an easy choice. I set about [Terraforming](https://www.terraform.io/) a shiny new cluster, but by default my cluster nodes get public IP addresses. They also, by default, have unfettered outbound internet access, plus RDP and SSH access. That bothered me, and was rightly picked up straight away when we started our security review.
 
-I don't anticipate any need for these nodes to have internet access. They need to talk to other GCP services like BigQuery and Cloud Storage. They don't need to get to arbitrary websites. The architecture in my fevered dreams is a little GKE cluster running our workflow code, surrounded by an impenetrable wall of Google-managed serverless services. But how?
+I don't anticipate any need for these nodes to have internet access. They need to talk to other GCP services like BigQuery, Cloud Storage and the Container Registry. They don't need to get to arbitrary websites. The architecture of my fevered dreams is a little GKE cluster running our workflow code, surrounded by an impenetrable layer of Google-managed serverless services. If it turns out that we do need to ship data in or out we have Cloud Functions to do it without exposing our cluster. But how?
 
 ## Good ol' Firewall Rules
 
-Yep, we could just set up firewall rules. As we're Terraforming anyway, that's not a big deal to configure. We do need to figure out what rules we need and the nodes still end up with internet-facing IP addresses. If we make a mistake we can quietly leave someone open that shouldn't be. Really, I'd like to avoid having the nodes on the internet at all. That just seems so much simpler, if it's possible.
+Yep, we could just set up firewall rules. As we're Terraforming anyway, that's not a big deal to configure. We do need to figure out what rules we need and the nodes still end up with internet-facing IP addresses.
+
+We could walk this road, but there's a couple of details I really don't like. There's the old "if we make a mistake we can quietly leave something open that shouldn't be", which is certainly true. More bothersome for me is that we're likely to end up with tight restrictions on inbound access but few or none on outbound traffic. If something nasty does get in, there's little to stop it shipping our secrets out to anywhere on the internet. [Exfiltration attacks are real and hard to deal with.](https://www.securityweek.com/why-does-data-exfiltration-remain-almost-unsolvable-challenge) Even the ubiquitous [DNS can be used to nick your stuff!](https://blogs.akamai.com/2017/09/introduction-to-dns-data-exfiltration.html)
+
+Really, I'd like to avoid having the nodes on the internet at all. That just seems so much simpler and safer, if we can get away with it.
 
 ## GKE Private Clusters
 
@@ -67,9 +68,9 @@ The mirror is very convenient, primarily because no changes are needed to pull i
 
 ## Mirror-Ish
 
-As we only need internet access for pulling public images, why not publish the images we need to our own GCR repository and pull from there? This approach works. The advantages of this approach boil down to image management. We can introduce controls over what images are available to our cluster, and we can enable vulnerability scanning on the images we publish - our security reviewers should love it.
+As we only need internet access for pulling public images, why not publish the images we need to our own GCR repository and pull from there? This approach works. Alongside the privacy advantages I've already convered, the advantages of this approach boil down to image management. We can introduce controls over what images are available to our cluster, and we can enable vulnerability scanning on the images we publish - our security reviewers should love it.
 
-The main downside is that the images we need are no longer in their standard repositories. We must updates images to point to the repositories in our `gcr.io` registry. So long as the workflow users have access to the GCR registry, that might not be a big problem - images will work the same way on their machines as they do in the cluster.
+The main downside is that the images we need are no longer in their standard repositories. We must update images to point to the repositories in our `gcr.io` registry. So long as the workflow users have access to the GCR registry, that might not be a big problem - images will work the same way on their machines as they do in the cluster.
 
 
 

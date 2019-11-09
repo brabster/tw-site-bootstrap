@@ -35,7 +35,7 @@ const LocationInfo = ({ location, remote }) =>
   </Container>
 
 const Engagement = ({ engagement }) => {
-  const { client, headline, highlights, agency, role, start, end, keywords } = engagement;
+  const { client, headline, highlights, role, start, end, keywords } = engagement;
 
   return <Card className="mt-3">
     <Accordion.Toggle as={Card.Header} eventKey={start}>

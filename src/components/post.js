@@ -4,10 +4,10 @@ import { Container, Row, Col } from "react-bootstrap"
 
 import FrontMatter from "./frontmatter"
 
-const Post = ({ frontmatter, html }) => (
+const Post = ({ frontmatter, html, fields }) => (
   <Container className="shadow rounded">
     <Row>
-      <FrontMatter frontmatter={frontmatter} />
+      <FrontMatter frontmatter={frontmatter} fields={fields} />
     </Row>
     <Row>
       <Col>

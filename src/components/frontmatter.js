@@ -2,7 +2,7 @@ import React from "react"
 
 import { Container, Row, Col } from "react-bootstrap"
 
-const FrontMatter = ({ frontmatter }) => (
+const FrontMatter = ({ frontmatter, fields: { date } }) => (
   <Container>
     <Row>
       <Col>
@@ -11,7 +11,7 @@ const FrontMatter = ({ frontmatter }) => (
     </Row>
     <Row>
       <Col>
-        <p>by {frontmatter.author.name} - {frontmatter.date}</p>
+        <p>by {frontmatter.author.name} - {date}</p>
       </Col>
     </Row>
   </Container>
