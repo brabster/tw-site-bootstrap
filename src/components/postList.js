@@ -17,13 +17,12 @@ const PostList = () => (
             node {
               fields {
                 slug,
-                date(formatString: "MMMM DD, YYYY")
+                date(formatString: "MMMM YYYY")
               }
               excerpt
               timeToRead
               frontmatter {
                 title
-                description
                 category
                 tags
                 author {

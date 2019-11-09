@@ -2,10 +2,16 @@ module.exports = {
   pathPrefix: "/gatsby-react-bootstrap-starter",
   siteMetadata: {
     title: "tempered.works",
-    description: "Tempered Works Ltd. Software Consulting Services",
+    description: "Software Development and Data Engineering Consultancy",
     author: "Paul Brabban"
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-yaml`,
     {
@@ -31,17 +37,6 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `gatsby-starter-react-bootstrap`,
-        short_name: `react-bootstrap`,
-        start_url: `/`,
-        background_color: `#20232a`,
-        theme_color: `#20232a`,
-        display: `minimal-ui`,
-      },
-    },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
