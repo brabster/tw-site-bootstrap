@@ -50,7 +50,7 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-netlify-headers`,
-    `gatsby-plugin-csp`,  
+    `gatsby-plugin-csp`,
+    `gatsby-plugin-netlify`,
   ]
 }
