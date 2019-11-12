@@ -22,6 +22,9 @@ export const query = graphql`
       html
       frontmatter {
         title
+        lead
+        category
+        tags
         author {
           name
         }

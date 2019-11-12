@@ -1,20 +1,19 @@
 import React from "react"
 
-import { Container, Row, Col } from "react-bootstrap"
+import { Row, Col } from "react-bootstrap"
 
-export default ({ frontmatter, fields: { date } }) => {
+export default ({ frontmatter: { title, lead } }) => {
   return (
-    <Container>
+    <>
       <Row>
         <Col>
-          <h1 className="text-center">{frontmatter.title}</h1>
+          <h1 className="text-center">{title}</h1>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <p>{frontmatter.author.name} - {date}</p>
-        </Col>
+      <hr />
+      <Row className="mb-3">
+        <Col className="lead text-center">{lead}</Col>
       </Row>
-    </Container>
+    </>
   )
 }

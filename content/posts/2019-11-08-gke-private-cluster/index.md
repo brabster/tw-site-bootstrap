@@ -1,7 +1,7 @@
 ---
 title: First Impressions - GKE Private Cluster
-date: 2019-11-08
 category: Google Cloud Platform
+lead: How private clusters in Google Kubernetes Engine can help keep your data out of the grubby mitts of bad actors, the architectural options and the trade-offs you'll need to make.
 tags:
  - gcp
  - gke

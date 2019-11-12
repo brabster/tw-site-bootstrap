@@ -37,27 +37,27 @@ const LocationInfo = ({ location, remote }) =>
 const Engagement = ({ engagement }) => {
   const { client, headline, highlights, role, start, end, keywords } = engagement;
 
-  return <Card className="mt-3">
-    <Accordion.Toggle as={Card.Header} eventKey={start}>
-      {role} - {clientInfo(client)}
-      <div className="mt-2 lead">{headline}</div>
-      <div className="mt-2">{`${formatDate(start)} - ${formatDate(end)} (${monthsBetweenIncl(start, end)} months${isFutureDate(end) ? " - projected" : ""})`}</div>
-    </Accordion.Toggle>
-    <Accordion.Collapse eventKey={start}>
-      <Card.Body className="py-0 px-0">
-        <Card.Text>
+  return (
+    <Card className="mt-3">
+      <Accordion.Toggle as={Card.Header} eventKey={start}>
+        {role} - {clientInfo(client)}
+        <div className="mt-2 lead">{headline}</div>
+        <div className="mt-2">{`${formatDate(start)} - ${formatDate(end)} (${monthsBetweenIncl(start, end)} months${isFutureDate(end) ? " - projected" : ""})`}</div>
+      </Accordion.Toggle>
+      <Accordion.Collapse eventKey={start}>
+        <Card.Body className="py-0 px-0">
           <ListGroup variant="flush">
             {highlights && highlights.map(highlight =>
-              <ListGroup.Item>{highlight}</ListGroup.Item>)}
+              <ListGroup.Item key={highlight}>{highlight}</ListGroup.Item>)}
           </ListGroup>
-        </Card.Text>
-      </Card.Body>
-    </Accordion.Collapse>
-    <Card.Footer className="border-bottom-2">
-      {keywords.map(keyword =>
-        <Badge className="mr-1" pill variant="primary">{keyword}</Badge>)}
-    </Card.Footer>
-  </Card>
+        </Card.Body>
+      </Accordion.Collapse>
+      <Card.Footer className="border-bottom-2">
+        {keywords.map(keyword =>
+          <Badge className="mr-1" pill variant="primary" key={keyword}>{keyword}</Badge>)}
+      </Card.Footer>
+    </Card>
+  )
 }
 
 export default ({ person }) => (
@@ -78,7 +78,7 @@ export default ({ person }) => (
     <Row>
       <Col>
         <Accordion>
-          {person.engagements.map(engagement => <Engagement engagement={engagement} />)}
+          {person.engagements.map(engagement => <Engagement key={engagement.start} engagement={engagement} />)}
         </Accordion>
       </Col>
     </Row>

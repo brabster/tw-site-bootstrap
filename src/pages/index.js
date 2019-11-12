@@ -7,7 +7,7 @@ import Contractor from "../components/contractor"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const Company = () => {
+export default () => {
   const { allPeopleYaml } = useStaticQuery(
     graphql`
       query {
@@ -53,7 +53,7 @@ const Company = () => {
         </Row>
         <Row className="pt-4">
           <Col lg>
-            {allPeopleYaml.edges.map(({ node }) => <Contractor person={node} />)}
+            {allPeopleYaml.edges.map(({ node }) => <Contractor key={node.id} person={node} />)}
           </Col>
           <Col>
             <Container className="border shadow">
@@ -75,6 +75,3 @@ const Company = () => {
     </Layout>
   )
 }
-
-export default Company
-
