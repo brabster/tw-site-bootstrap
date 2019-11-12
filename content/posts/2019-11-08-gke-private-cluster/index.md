@@ -1,7 +1,7 @@
 ---
 title: Getting started with GKE Private Clusters
 category: Google Cloud Platform
-lead: How private clusters in Google Kubernetes Engine can help keep your data safe, the architectural options you have to keep your nodes away from the internet and the trade-offs you'll need to make.
+lead: Private clusters in Google Kubernetes Engine can help keep your data safe. This post considers the tradeoffs involved in choosing private clusters and how you can work around some of the challenges you face when your cluster nodes can't talk to the internet.
 tags:
  - gcp
  - gke
@@ -17,7 +17,7 @@ To keep things simple and re-use lots of existing Kubernetes experience in the t
 we picked the Kubernetes-native [Argo](https://github.com/argoproj/argo)
 over more traditional choices like [Airflow](https://airflow.apache.org/). More on the workflow side of things in a future post.
 
-The choice of Argo involves building out a dedicated Kubernetes cluster to run it. GKE is the simplest hosted option for this client, so that's an easy choice. I set about [Terraforming](https://www.terraform.io/) a shiny new cluster, but by default my cluster nodes get public IP addresses. They also, by default, have unfettered outbound internet access, plus RDP and SSH inbound access. That bothered me, and was rightly picked up straight away when we started our security review.
+The choice of Argo involves building out a dedicated Kubernetes cluster to run it. Google Kubernetes Engine (GKE) is the simplest hosted option for this client, so that's an easy choice. I set about [Terraforming](https://www.terraform.io/) a shiny new cluster, but by default my cluster nodes get public IP addresses. They also, by default, have unfettered outbound internet access, plus RDP and SSH inbound access. That bothered me, and was rightly picked up straight away when we started our security review.
 
 I don't anticipate any need for these nodes to have internet access. They need to talk to other GCP services like BigQuery, Cloud Storage and the Container Registry for our custom images. They don't need to get to arbitrary websites. The architecture of my fevered dreams is a plucky little GKE cluster running our data science workflows, safely surrounded by an impenetrable layer of Google-managed serverless services (including K8s master access). If it turns out that we do need to ship data in or out we have Cloud Functions to do it without exposing our cluster. But how?
 
