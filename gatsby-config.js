@@ -6,7 +6,6 @@ module.exports = {
     author: "Paul Brabban"
   },
   plugins: [
-    `gatsby-plugin-csp`,  
     {
       resolve: `gatsby-plugin-typography`,
       options: {
@@ -50,6 +49,8 @@ module.exports = {
           `gatsby-remark-copy-linked-files`
         ],
       },
-    }
+    },
+    `gatsby-plugin-netlify-headers`,
+    `gatsby-plugin-csp`,  
   ]
 }
