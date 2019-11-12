@@ -6,6 +6,7 @@ module.exports = {
     author: "Paul Brabban"
   },
   plugins: [
+    `gatsby-plugin-csp`,  
     {
       resolve: `gatsby-plugin-typography`,
       options: {
