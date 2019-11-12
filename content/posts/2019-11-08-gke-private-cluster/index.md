@@ -1,7 +1,7 @@
 ---
-title: First Impressions - GKE Private Cluster
+title: Getting started with GKE Private Clusters
 category: Google Cloud Platform
-lead: How private clusters in Google Kubernetes Engine can help keep your data out of the grubby mitts of bad actors, the architectural options and the trade-offs you'll need to make.
+lead: How private clusters in Google Kubernetes Engine can help keep your data safe, the architectural options you have to keep your nodes away from the internet and the trade-offs you'll need to make.
 tags:
  - gcp
  - gke
@@ -48,9 +48,9 @@ So far so good. I adjust my configuration, destroy my old cluster and spin up my
 
 Nope. Failed deployment, image pull error. Of course - the nodes can't get out to the internet to pull the images I'm using, like the `argoproj` images I need to deploy Argo! Before we figure that problem out, let's take a step back. How did the cluster find the other container images it needed to run in the first place?
 
-## Mirror Images
+## Mirrors
 
-It turns out that [Google Container Registry can act as a mirror](https://cloud.google.com/container-registry/docs/using-dockerhub-mirroring) for some Docker Hub images, and that this mirror is configured as part of a vanille GKE cluster. So *that's* how GKE was able to find the images it needed. I tried a deployment using `alpine` and that pulled fine. `elasticsearch` - not so much. It seems there is a fairly arbitrary set of repositories being mirrored and although `argoproj/argoexec` is one, the other images are not. As per the docs, you can see the mirrored repos with:
+It turns out that [Google Container Registry can act as a mirror](https://cloud.google.com/container-registry/docs/using-dockerhub-mirroring) for some Docker Hub images, and that this mirror is configured as part of a vanille GKE cluster. So *that's* how GKE was able to find the images it needed. I tried a deployment using `alpine` and that pulled fine. `elasticsearch` - not so much. It seems there is a fairly arbitrary set of repositories being mirrored and although `argoproj/argoexec` is one, the other Argo-related images I need are not. As per the docs linked earlier, you can see the mirrored repos with:
 
 ```bash
 gcloud container images list --repository=mirror.gcr.io
@@ -64,20 +64,18 @@ The mirror is very convenient, primarily because no changes are needed to pull i
 
 ## Cloud Router and NAT
 
-[GKE documentation](https://cloud.google.com/nat/docs/gke-example) takes you through setting up Cloud Router and NAT to route traffic out from your cluster nodes to the internet. As we're back in the realm of unfettered outbound access or firewall rules, I've looked at an alternative.
+[GKE documentation](https://cloud.google.com/nat/docs/gke-example) takes you through setting up Cloud Router and NAT to route traffic out from your cluster nodes to the internet. As that would take us back to the realm of unfettered outbound access or firewall rules, I've looked at an alternative.
 
-## Mirror-Ish
+## Quasi-Mirror
 
-As we only need internet access for pulling public images, why not publish the images we need to our own GCR repository and pull from there? This approach works. Alongside the privacy advantages I've already convered, the advantages of this approach boil down to image management. We can introduce controls over what images are available to our cluster, and we can enable vulnerability scanning on the images we publish - our security reviewers should love it.
+As we only need internet access for pulling public images, why not publish the images we need to our own GCR repository and pull from there? This approach works. Alongside the privacy advantages I've already covered, the advantages of this approach boil down to image management. We can introduce controls over what images are available to our cluster, and we can enable vulnerability scanning on the images we publish - our security reviewers should love it.
 
 The main downside is that the images we need are no longer in their standard repositories. We must update images to point to the repositories in our `gcr.io` registry. So long as the workflow users have access to the GCR registry, that might not be a big problem - images will work the same way on their machines as they do in the cluster.
 
+## The Ideal Mirror Solution
 
+It's a shame the ability to mirror and scan arbitrary images isn't built into GCR. In its absence, you could run your own image registry and mirror any images you like, with whatever vulnerability or other security scanning you need in place. That would allow images to work in your cluster without modification to the image locations and tags. A little more setup, but increased convenience for the day-to-day users of your cluster.
 
+## Conclusion
 
-
-
-
-
-
-
+If your GKE cluster's workload is driven by other Google APIs, then a private cluster might be an option and has some neat advantages in hardening and simplifying your security posture. GCR's mirror only mirrors a small subset of Docker Hub images, and may not cover enough for your needs. Explicitly copying images into your own GCR registry can make those images accessible without the other risks of general node internet access, but there are trade-offs in convenience and security.
