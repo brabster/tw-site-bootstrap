@@ -1,7 +1,7 @@
 import React from "react"
 
-import { Card, Container, Row, Col, Badge, ListGroup, Accordion } from "react-bootstrap"
-import { graphql } from "gatsby";
+import { Card, Container, Row, Col, Badge, ListGroup, Button } from "react-bootstrap"
+import { graphql, Link } from "gatsby";
 
 const formatDate = (isoDateStr) => new Date(isoDateStr).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
 const nextAvailable = (isoDateStr) => {
@@ -35,33 +35,35 @@ const LocationInfo = ({ location, remote }) =>
     Based in {location.city}, {location.countryCode}. {remote}
   </Container>
 
-const Engagement = ({ engagement }) => {
-  const { client, headline, highlights, role, start, end, keywords } = engagement;
+const EngagementDetails = ({ engagement: { highlights } }) => (
+  <Card.Body className="py-0 px-0">
+    <ListGroup variant="flush">
+      {highlights && highlights.map(highlight =>
+        <ListGroup.Item key={highlight}>{highlight}</ListGroup.Item>)}
+    </ListGroup>
+  </Card.Body>
+);
+
+const Engagement = ({ engagement, showDetails }) => {
+  const { client, headline, role, start, end, keywords } = engagement;
 
   return (
-    <Card className="mt-3">
-      <Accordion.Toggle as={Card.Header} eventKey={start}>
+    <Card className="mt-3 border">
+      <Card.Header>
         {role} - {clientInfo(client)}
         <div className="mt-2 lead">{headline}</div>
         <div className="mt-2">{`${formatDate(start)} - ${formatDate(end)} (${monthsBetweenIncl(start, end)} months${isFutureDate(end) ? " - projected" : ""})`}</div>
-      </Accordion.Toggle>
-      <Accordion.Collapse eventKey={start}>
-        <Card.Body className="py-0 px-0">
-          <ListGroup variant="flush">
-            {highlights && highlights.map(highlight =>
-              <ListGroup.Item key={highlight}>{highlight}</ListGroup.Item>)}
-          </ListGroup>
-        </Card.Body>
-      </Accordion.Collapse>
-      <Card.Footer className="border-bottom-2">
+      </Card.Header>
+      {showDetails ? <EngagementDetails engagement={engagement} /> : <></>}
+      <Card.Footer className="lead">
         {keywords.map(keyword =>
-          <Badge className="mr-1" pill variant="primary" key={keyword}>{keyword}</Badge>)}
+          <Badge className="mr-1" variant="dark" key={keyword}>{keyword}</Badge>)}
       </Card.Footer>
     </Card>
   )
 }
 
-export default ({ person }) => (
+export default ({ person, showDetails }) => (
   <Container className="border shadow p-3">
     <Row className="pb-3">
       <Col>
@@ -78,11 +80,17 @@ export default ({ person }) => (
     </Row>
     <Row>
       <Col>
-        <Accordion>
-          {person.engagements.map(engagement => <Engagement key={engagement.start} engagement={engagement} />)}
-        </Accordion>
+        {person.engagements.map(engagement =>
+          <Engagement key={engagement.start} engagement={engagement} showDetails={showDetails} />)}
       </Col>
     </Row>
+    {showDetails ? <></> :
+      <Link className='stretched-link' to={`/people/${person.id}`}>
+        <Row>
+          <Col className='text-center mt-2'><Button>More...</Button></Col>
+        </Row>
+      </Link>
+    }
   </Container>
 )
 

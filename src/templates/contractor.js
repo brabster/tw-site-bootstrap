@@ -7,7 +7,7 @@ import Contractor from '../components/contractor'
 export default ({ data }) => {
   return (
     <Layout pageInfo={{ pageName: `${data.peopleYaml.name}` }}>
-      <Contractor person={data.peopleYaml} />
+      <Contractor showDetails person={data.peopleYaml} />
     </Layout>
   )
 }
