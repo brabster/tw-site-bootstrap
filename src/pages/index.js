@@ -14,30 +14,7 @@ export default () => {
         allPeopleYaml {
           edges {
             node {
-              id
-              label
-              location {
-                region
-                countryCode
-                city
-              }
-              name
-              summary
-              remote
-              engagements {
-                client {
-                  name
-                  description
-                  link
-                }
-                agency
-                role
-                start
-                end
-                keywords
-                headline
-                highlights
-              }
+              ...ContractorFragment
             }
           }
         }

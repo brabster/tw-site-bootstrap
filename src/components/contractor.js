@@ -1,6 +1,7 @@
 import React from "react"
 
 import { Card, Container, Row, Col, Badge, ListGroup, Accordion } from "react-bootstrap"
+import { graphql } from "gatsby";
 
 const formatDate = (isoDateStr) => new Date(isoDateStr).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
 const nextAvailable = (isoDateStr) => {
@@ -84,3 +85,32 @@ export default ({ person }) => (
     </Row>
   </Container>
 )
+
+export const query = graphql`
+  fragment ContractorFragment on PeopleYaml {
+    id
+    label
+    location {
+      region
+      countryCode
+      city
+    }
+    name
+    summary
+    remote
+    engagements {
+      client {
+        name
+        description
+        link
+      }
+      agency
+      role
+      start
+      end
+      keywords
+      headline
+      highlights
+    }
+  }
+`
