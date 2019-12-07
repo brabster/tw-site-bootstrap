@@ -16,11 +16,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: `/posts${slug}`,
     }),
-    createNodeField({
-      node,
-      name: `date`,
-      value: dateFromSlug(slug),
-    })
+      createNodeField({
+        node,
+        name: `date`,
+        value: dateFromSlug(slug),
+      })
     return;
   }
   if (node.internal.type === `PeopleYaml`) {

@@ -2,3 +2,8 @@ a.custom-card,
 a.custom-card:hover {
     color: inherit
 }
+
+.clickable-over-stretched {
+  z-index: 2;
+  position: relative;
+}
