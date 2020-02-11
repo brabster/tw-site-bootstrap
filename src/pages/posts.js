@@ -7,7 +7,7 @@ import PostList from "../components/postList"
 
 export default () => (
   <Layout pageInfo={{ pageName: "posts" }}>
-    <SEO title="Home" keywords={[`consulting`]} />
+    <SEO title="Blog" keywords={[`consulting`]} />
     <Container>
       <Row className="justify-content-center">
         <Col>

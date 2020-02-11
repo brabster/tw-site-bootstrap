@@ -20,7 +20,8 @@ export default ({ pageInfo }) => {
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Nav activeKey={pageInfo && pageInfo.pageName}>
             {[
-              ["About", "/"],
+              ["Home", "/"],
+              ["About", "/about"],
               ["Blog", "/posts"]
             ].map(([page, link]) => 
               <Link key={link} to={link} className="link-no-style">

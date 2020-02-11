@@ -24,7 +24,7 @@ languages:
   language: English
   fluency: Native speaker
 qualifications:
-  - institution: UK Government Disclosure and Barring Service
+  - institution: UK Disclosure and Barring Service
     title: DBS Certificate
   - institution: University of Manchester
     title: MSc. Advanced Computer Science
@@ -54,7 +54,7 @@ engagements:
     end: 2020-06
     headline: Bootstrap relevance engineering for a new, public facing, high-traffic search solution.
     highlights:
-      - Joined team at 3% customer traffic and delivered improvments to take over all traffic within three months.
+      - Joined team at 3% customer traffic and delivered improvements to take over all traffic within three months.
       - Replaced manual data processing with a data-science friendly, lightweight, in-cloud workflow solution.
       - Implemented and iterated A/B testing technology and methodology with data scientists.
     keywords:

@@ -4,12 +4,12 @@ import { Card, Container, Row, Col, Badge, ListGroup, Button } from "react-boots
 import { FaTwitter, FaGithub, FaLinkedin, FaPaperPlane } from "react-icons/fa";
 import { graphql, Link } from "gatsby";
 
-const formatDate = (isoDateStr) => new Date(isoDateStr).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
+const formatDate = (isoDateStr) => new Date(isoDateStr).toLocaleDateString('en-GB', { year: 'numeric', month: 'short' })
 const nextAvailable = (isoDateStr) => {
   const date = new Date(isoDateStr);
   return date.setMonth(date.getMonth() + 1)
 }
-const isFutureDate = (isoDateStr) => new Date(isoDateStr) > new Date();
+
 const monthsBetweenIncl = (startStr, endStr) => {
   const start = new Date(startStr);
   const end = new Date(endStr);
@@ -37,10 +37,10 @@ const LocationInfo = ({ location, remote }) =>
   </Container>
 
 const EngagementDetails = ({ engagement: { highlights } }) => (
-    <ListGroup variant="flush" className="py-0 px-0">
-      {highlights && highlights.map(highlight =>
-        <ListGroup.Item key={highlight}>{highlight}</ListGroup.Item>)}
-    </ListGroup>
+  <ul className="py-0 px-0">
+    {highlights && highlights.map(highlight =>
+      <li key={highlight}>{highlight}</li>)}
+  </ul>
 );
 
 const Engagement = ({ engagement, showDetails }) => {
@@ -49,13 +49,13 @@ const Engagement = ({ engagement, showDetails }) => {
   return (
     <Card className="mt-2 border">
       <Card.Header>
-        {role} - {clientInfo(client)}
-        <div className="mt-2 lead">{headline}</div>
-        <div className="mt-2">{`${formatDate(start)} - ${formatDate(end)} (${monthsBetweenIncl(start, end)} months${isFutureDate(end) ? " - projected" : ""})`}</div>
-        <div className="mt-1">{keywords.map(keyword => <Badge className="mr-1" variant="dark" key={keyword}>{keyword}</Badge>)}</div>
+        <div className="lead">{role} - {clientInfo(client)}</div>
+        <div className="mt-2s">{headline}</div>
+        <div className="mt-2">{`${formatDate(start)} - ${formatDate(end)} (${monthsBetweenIncl(start, end)} months)`}</div>
+        <div className="mt-1 lead">{keywords.map(keyword => <Badge className="mr-1" variant="dark" key={keyword}>{keyword}</Badge>)}</div>
       </Card.Header>
       <Card.Body className="p-0">
-          {showDetails ? <EngagementDetails engagement={engagement} /> : <></>}
+        {showDetails ? <EngagementDetails engagement={engagement} /> : <></>}
       </Card.Body>
     </Card>
   )
@@ -80,9 +80,11 @@ const Qualification = ({ qualification }) => {
   const { institution, title, start, end } = qualification;
   return (
     <>
-      <span className="lead mr-2">{title}</span>
-      <span className="mr-2">{institution}</span>
-      {start && <span>{start} - {end}</span>}
+      <div className="lead">{title}</div>
+      <div>
+        <span className="mr-2">{institution}</span>
+        <span>{start && `${start} - ${end}`}</span>
+      </div>
     </>
   )
 }
@@ -107,7 +109,7 @@ export default ({ person, showDetails }) => (
           </Col>
         </Row>
         <Row>
-          <Col className="lead">{person.summary.lead}</Col>
+          <Col>{person.summary.lead}</Col>
         </Row>
         {showDetails && (
           <Row className="mt-2">
@@ -118,7 +120,7 @@ export default ({ person, showDetails }) => (
     </Row>
     <Row>
       <Col>
-        <h3>Engagements</h3>
+        <h2>Engagements</h2>
         {person.engagements.map(engagement =>
           <Engagement key={engagement.start} engagement={engagement} showDetails={showDetails} />)}
       </Col>

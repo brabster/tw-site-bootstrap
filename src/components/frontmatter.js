@@ -11,8 +11,10 @@ export default ({ frontmatter: { title, lead } }) => {
         </Col>
       </Row>
       <hr />
-      <Row className="mb-3">
-        <Col className="lead text-center">{lead}</Col>
+      <Row>
+        <Col>
+          <p className="lead">{lead}</p>
+        </Col>
       </Row>
     </>
   )
