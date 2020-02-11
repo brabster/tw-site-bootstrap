@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
 
-import { Card, Button } from "react-bootstrap"
+import { Card, Badge } from "react-bootstrap"
 
 const PostTeaser = ({
   fields: { date, slug },
@@ -9,17 +9,16 @@ const PostTeaser = ({
   excerpt
 }) => (
   <Card className="shadow">
-    <Card.Header className="px-2 py-0 text-muted">
+    <Card.Header className="px-2 py-0">
       {date}
-      <Button className="text-uppercase" variant="link">{category}</Button>
+      <Badge className="text-uppercase float-right">{category}</Badge>
     </Card.Header>
     <Link to={slug} className="custom-card">
       <Card.Title className="px-2 py-0">{title}</Card.Title>
       <Card.Text className="px-2 py-0">
-        {excerpt}
+        {excerpt} <Badge>read full post</Badge>
       </Card.Text>
     </Link>
-    <Link to={slug}><Card.Text className="px-2 py-0">read more</Card.Text></Link>
   </Card>
 )
 
